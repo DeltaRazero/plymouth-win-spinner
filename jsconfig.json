@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    // "lib": ["ES6"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noLib": true,
+    "strict": true,
+    "checkJs": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@lib/*": ["../lib/*"],
+    },
+  },
+  "include": [
+    "./lib/global.d.ts",
+    "./src/**/*",
+  ]
+}

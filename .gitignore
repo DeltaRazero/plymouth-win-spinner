@@ -1,0 +1,9 @@
+node_modules
+
+res/throbber
+
+theme/win-spinner/spinner.script
+theme/win-spinner/_bgrt/bgrt.png
+theme/win-spinner/res/throbber/**/*.png
+theme/win-spinner/res/fallback.png
+theme/win-spinner/res/watermark.png
