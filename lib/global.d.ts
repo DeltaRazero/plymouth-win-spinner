@@ -17,10 +17,19 @@ interface Image
 
   Rotate(angle: float): Image;
 
+  /**
+   * Crops the given image starting at x, y and ending at x+width, y+height.
+   */
   Crop(x: float, y: float, width: float, height: float): Image;
 
+  /**
+   * Scales the given image to a given width and height.
+   */
   Scale(width: int, height: int): Image;
 
+  /**
+   * Tiles the given image to a given width and height.
+   */
   Tile(width: int, height: int): Image;
 
   GetWidth(): int;
@@ -44,6 +53,8 @@ namespace Math
   export function Min(value_a: number, value_b: number): number;
 
   export function Max(value_a: number, value_b: number): number;
+
+  export function Clamp(value: number, min: number, max: number): number;
 
   export const Pi = 3.14159265359;
 
@@ -232,6 +243,9 @@ namespace Window
 // *****************************************************************************
 
 interface String {
+  // Strings are not indexable, wtf?
+  // [index: int]: string;
+
   /**
    * @param {int} index
    * @returns {string}
@@ -250,6 +264,8 @@ interface String {
    */
   Length(): int;
 }
+
+function String(value: string|int|float): string;
 
 // *****************************************************************************
 

@@ -1,26 +1,36 @@
 import { logos } from "lib/logo";
 import { sprite_set_position_y_below_sprite } from "lib/positioning";
-import { global_message } from "message";
+import { global_message } from "opt/message";
 
 // *****************************************************************************
 //   FIRMWARE
 // *****************************************************************************
 
-/**
- * @param {string} current_mode
- */
-export function display_firmware(current_mode)
+export function hide_firmware()
 {
-  if (current_mode != "firmware-upgrade") {
-    logos.hide();
+  logos.set_opacity(0.0);
+}
+
+/**
+ * @param {boolean} execute
+ *
+ * @returns {boolean} Whether this display mode should be executed.
+ */
+export function display_firmware(execute)
+{
+  if (Plymouth.GetMode() != "firmware-upgrade") {
+    hide_firmware();
     return false;
   }
+  if (!execute) {
+    return true;
+  }
 
-  logos._logo.SetOpacity(1.0);
-  logos._watermark.SetOpacity(0.0);
+  logos.logo.SetOpacity(1.0);
+  logos.watermark.SetOpacity(0.0);
 
   // TODO: Progress bar?
-  sprite_set_position_y_below_sprite(logos._logo, global_message);
+  sprite_set_position_y_below_sprite(logos.logo, global_message);
 
   return true;
 }

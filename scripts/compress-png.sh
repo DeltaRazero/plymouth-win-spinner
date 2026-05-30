@@ -1,4 +1,5 @@
 #!/bin/bash
+
 mogrify \
   -filter Triangle \
   -define filter:support=2 \
@@ -12,4 +13,4 @@ mogrify \
   -define png:exclude-chunk=all \
   -interlace none \
   -colorspace sRGB \
-  $1
+  $2 $1

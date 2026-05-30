@@ -1,9 +1,11 @@
 node_modules
 
-res/throbber
+res/gfx/throbber
 
-theme/win-spinner/spinner.script
-theme/win-spinner/_bgrt/bgrt.png
-theme/win-spinner/res/throbber/**/*.png
-theme/win-spinner/res/fallback.png
-theme/win-spinner/res/watermark.png
+theme/win-spinner/main.script
+theme/win-spinner/res/gfx/bgrt.png
+theme/win-spinner/res/gfx/logo.png
+theme/win-spinner/res/gfx/watermark.png
+theme/win-spinner/res/gfx/ctn/*.png
+theme/win-spinner/res/gfx/icon/*.png
+theme/win-spinner/res/gfx/throbber/*.png

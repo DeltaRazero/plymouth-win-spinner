@@ -1,26 +1,42 @@
-import { new_empty_image } from "lib/global";
+import { new_empty_image, WINDOW } from "lib/global";
 import { logos } from "lib/logo";
-import { sprite_set_position_x, sprite_set_position_y, sprite_set_position_y_below_sprite } from "lib/positioning";
+import { sprite_pos_x, sprite_pos_y, sprite_set_position_y_below_sprite } from "lib/positioning";
 import { new_Spinner } from "lib/spinner";
-import { global_message } from "message";
+import { global_message } from "opt/message";
 
 // *****************************************************************************
 //   SHUTDOWN
 // *****************************************************************************
 
-let _shutdown_spinner = new_Spinner("w8");
-sprite_set_position_x(_shutdown_spinner.sprite, 0.50);
-sprite_set_position_y(_shutdown_spinner.sprite, 0.72);
+let _shutdown_spinner = new_Spinner("w8", 0.0493);
+sprite_pos_x(WINDOW, _shutdown_spinner.sprite, 0.50);
+sprite_pos_y(WINDOW, _shutdown_spinner.sprite, 0.72);
+
+export function animate_shutdown()
+{
+  _shutdown_spinner.animate();
+}
+
+export function hide_shutdown()
+{
+  _shutdown_spinner.hide();
+  logos.set_opacity(0.0);
+}
 
 /**
- * @param {string} current_mode
+ * @param {boolean} execute
+ *
+ * @returns {boolean} Whether this display mode should be executed.
  */
-export function display_shutdown(current_mode)
+export function display_shutdown(execute)
 {
-  if (current_mode != "shutdown" && current_mode != "reboot") {
-    _shutdown_spinner.hide();
-    logos.hide();
+  let mode = Plymouth.GetMode();
+  if (mode != "shutdown" && mode != "reboot") {
+    hide_shutdown();
     return false;
+  }
+  if (!execute) {
+    return true;
   }
 
   _shutdown_spinner.show();
@@ -28,9 +44,4 @@ export function display_shutdown(current_mode)
   sprite_set_position_y_below_sprite(_shutdown_spinner.sprite, global_message);
 
   return true;
-}
-
-export function animate_shutdown()
-{
-  _shutdown_spinner.animate();
 }
